@@ -1,0 +1,65 @@
+import java.util.Scanner;
+class Main{
+    public static void main(String args[]){
+        Scanner s=new Scanner(System.in);
+        System.out.print("enter the message bits:");
+        String message=s.nextLine();
+        System.out.print("enter the generator  bits:");
+        String generator=s.nextLine();
+        int data[]=new int[message.length()+generator.length()-1];
+        int divisor[]=new int[generator.length()];
+        for(int i=0;i<message.length();i++){
+            data[i]=Character.getNumericValue(message.charAt(i));
+        }
+        for(int i=0;i<generator.length();i++){
+            divisor[i]=Character.getNumericValue(generator.charAt(i));
+        }
+         for(int i=0;i<message.length();i++){
+             if(data[i]==1)
+                for(int j=0;j<generator.length();j++){
+                    data[i+j]^=divisor[j];
+                }
+         }
+         System.out.print("appeneded message:");
+         for(int i=0;i<message.length();i++){
+            data[i]=Character.getNumericValue(message.charAt(i));
+        }
+         for(int i=0;i<data.length;i++){
+           System.out.print(data[i]);
+        }
+         System.out.println();
+         System.out.print("enter appeneded message:");
+         message=s.nextLine();
+         System.out.print("enter generator code:");
+         generator=s.nextLine();
+        data=new int[message.length()+generator.length()-1];
+        divisor=new int[generator.length()];
+         for(int i=0;i<message.length();i++){
+            data[i]=Character.getNumericValue(message.charAt(i));
+        }
+        for(int i=0;i<generator.length();i++){
+            divisor[i]=Character.getNumericValue(generator.charAt(i));
+        }
+         for(int i=0;i<message.length();i++){
+             if(data[i]==1)
+                for(int j=0;j<generator.length();j++){
+                    data[i+j]^=divisor[j];
+                }
+         }
+         int flag=1;
+         for(int i=0;i<data.length;i++){
+             if(data[i]==1)
+                {
+                    flag=0;
+                    break;
+                }
+         }
+        if(flag==1){
+            System.out.println("data is valid");
+        }
+        else
+        {
+             System.out.println("data is invalid");
+        }
+    }
+}
